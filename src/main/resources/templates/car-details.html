@@ -93,6 +93,18 @@
                 </div>
             </div>
 
+            <div class="row col-md-12 form-input-row">
+                <div class="col-md-5">
+                    <label for="photo">Photo:</label>
+                </div>
+                <div class="col-md-6" th:if="*{carPhoto != null}">
+                    <div class="offset-1 col-8 opt"><img id="photo" class="col-md-12" th:src="@{'data:image/png;base64,'+ ${car.convertBinToStringImage()}}" alt="photo"></div>
+                </div>
+                <!--<div th:if="*{carPhoto != null}">-->
+                    <!--<div class="col-md-6"><img id="photo" class="col-md-12" th:src="@{'data:image/png;base64,'+ ${car.convertBinToStringImage()}}" alt="photo"></div>-->
+                <!--</div>-->
+            </div>
+
             <div class="row col-md-12">
                 <div class="offset-6 col-md-6">
                     <a th:href="@{${referer}}">

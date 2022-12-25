@@ -24,6 +24,11 @@
             <div class="col-2" th:text="${car.getCarStatus()}"></div>
             <div class="row col-4">
                 <div class="col-4">
+                    <div th:if="${car != null}">
+                        <img class="nie_rozumie" th:src="@{'data:image/png;base64,'+ ${car.convertBinToStringImage()}}" alt="photo">
+                    </div>
+                </div>
+                <div class="col-4">
                     <a th:href="@{/car/details2(carId=${car.getIdCar()})}">
                         <button type="button" class="btn btn-warning">
                             Details
@@ -38,6 +43,11 @@
                     </a>
                 </div>
             </div>
+            <!--<div class="offset-1 col-md-2">-->
+                <!--<div class="col-md-2" th:if="${car != null}">-->
+                    <!--<img class="nie_rozumie" th:src="@{'data:image/png;base64,'+ ${car.convertBinToStringImage()}}" alt="photo">-->
+                <!--</div>-->
+            <!--</div>-->
         </div>
     </div>
 

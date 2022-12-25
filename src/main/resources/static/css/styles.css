@@ -327,3 +327,12 @@ div.sticky-left {
     size: 40px;
     margin-left: 10px;
 }
+
+.opt {
+    margin-left: 45px;
+}
+
+.nie_rozumie {
+    max-width: 80px;
+    max-height: 45px;
+}

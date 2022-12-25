@@ -8,6 +8,13 @@
 <body>
 <th:block th:replace="fragments :: navigator" th:remove="tag"/>
 <div class="container">
+    <!--<h1 th:text="${atr_car.getName()}"></h1>-->
+    <!--<div th:if="${atr_car == null}">-->
+        <!--<h1>NULL</h1>-->
+    <!--</div>-->
+    <div class="offset-3 col-md-5" th:if="${atr_car != null}">
+        <div class="offset-1 col-11"><img id="photo" class="col-md-12" th:src="@{'data:image/png;base64,'+ ${atr_car.convertBinToStringImage()}}" alt="photo"></div>
+    </div>
     <h1>Sebix-Rent</h1>
     <div><p><b>Sebix-Rent</b>'s story dates back to 4.11.2019, when the company was founded in Poland to assist Polish people with car
         hire while visiting relatives in Europe or even in Poland. Ever since over a week our business concept has notably developed.

@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
@@ -82,10 +83,17 @@ public class CarController {
     }
 
     @PostMapping("/add_car")
-    public String postAddCar(Car car) {
-        carService.save(car);
+    public String postAddCar(Car car,
+                             @RequestParam("photo") MultipartFile photo) {
+        carService.save(car, photo);
         return "redirect:/car/list_cars";
     }
+
+//    @PostMapping("/add_car")
+//    public String postAddCar(Car car) {
+//        carService.save(car);
+//        return "redirect:/car/list_cars";
+//    }
 
     @GetMapping("/details")
     public String details(Model model, HttpServletRequest request, @RequestParam(name = "carId") Long carId) {
@@ -175,4 +183,25 @@ public class CarController {
         return "redirect:/car/list";
     }
 
+    @GetMapping("/profilePhoto")
+    public String profile(Model model,
+                          HttpServletRequest request,
+                          @RequestParam(name = "carId") Long carProfileId) {
+        Optional<Car> optionalCar = carService.getById(carProfileId);
+        if (optionalCar.isPresent()){
+            model.addAttribute("atr_car", optionalCar.get());
+            model.addAttribute("atr_referer", request.getHeader("referer"));
+
+            return "carPhoto-form";
+        }
+        return "redirect:/car/list";
+    }
+
+    @PostMapping("/profilePhoto")
+    public String uploadPhoto(Long carForProfileId,
+                             @RequestParam("photo") MultipartFile photo) {
+        carService.savePhotoFor(carForProfileId, photo);
+
+        return "redirect:/car/list_cars";
+    }
 }

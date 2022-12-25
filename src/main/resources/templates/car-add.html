@@ -9,7 +9,7 @@
 <th:block th:replace="fragments :: navigator" th:remove="tag"/>
 <div class="container">
     <h1>Car add</h1>
-    <form th:action="@{/car/add_car}" method="post" th:object="${car}">
+    <form th:action="@{/car/add_car}" method="post" th:object="${car}" enctype="multipart/form-data">
         <div class="row col-12 form-container">
 
             <input type="hidden" th:field="*{idCar}" th:value="*{idCar}">
@@ -85,6 +85,15 @@
                     <select id="stat" th:field="*{carStatus}">
                         <option th:each="status : ${statuses}" th:text="${status}" th:value="${status}"></option>
                     </select>
+                </div>
+            </div>
+
+            <div class="row col-md-12 form-input-row">
+                <div class="col-md-6">
+                    <label for="photo">Photo:</label>
+                </div>
+                <div class="col-md-6">
+                    <input class="form-control" type="file" id="photo" th:name="photo">
                 </div>
             </div>
 

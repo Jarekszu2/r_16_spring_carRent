@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Base64;
 import java.util.Set;
 
 @Data
@@ -44,4 +45,14 @@ public class Car {
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "car", fetch = FetchType.LAZY)
     private Set<Booking> bookings;
+
+    @OneToOne
+    private CarPhoto carPhoto;
+
+    public String convertBinToStringImage(){
+        if (carPhoto != null && carPhoto.getFoto().length > 0) {
+            return Base64.getEncoder().encodeToString(carPhoto.getFoto());
+        }
+        return "";
+    }
 }
